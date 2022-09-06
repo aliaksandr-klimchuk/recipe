@@ -1,13 +1,20 @@
 package alex.klimchuk.recipe.domain;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.Set;
 
 /**
  * Copyright Alex Klimchuk (c) 2022.
  */
+@Data
 @Entity
+@Builder
+@ToString
+@EqualsAndHashCode(exclude = {"recipes"})
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "category")
 public class Category {
 
@@ -15,42 +22,10 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "description")
     private String description;
 
     @ManyToMany(mappedBy = "categories")
     private Set<Recipe> recipes;
-
-    public Category() {
-
-    }
-
-    public Category(String description, Set<Recipe> recipes) {
-        this.description = description;
-        this.recipes = recipes;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Set<Recipe> getRecipes() {
-        return recipes;
-    }
-
-    public void setRecipes(Set<Recipe> recipes) {
-        this.recipes = recipes;
-    }
 
 }

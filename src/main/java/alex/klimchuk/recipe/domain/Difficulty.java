@@ -1,41 +1,25 @@
 package alex.klimchuk.recipe.domain;
 
+import jakarta.persistence.*;
+import lombok.*;
+
 /**
  * Copyright Alex Klimchuk (c) 2022.
  */
+@Getter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public enum Difficulty {
 
     EASY(0L, "Easy"),
     MODERATE(1L, "Moderate"),
     HARD(2L, "Hard");
 
+    @Column(name = "id")
     private Long id;
 
+    @Column(name = "name")
     private String name;
-
-    Difficulty() {
-
-    }
-
-    Difficulty(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
 }

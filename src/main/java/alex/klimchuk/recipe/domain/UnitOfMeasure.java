@@ -1,41 +1,26 @@
 package alex.klimchuk.recipe.domain;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 /**
  * Copyright Alex Klimchuk (c) 2022.
  */
+@Data
 @Entity
+@Builder
+@ToString
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "unit_of_measure")
 public class UnitOfMeasure {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "description")
     private String description;
-
-    public UnitOfMeasure() {
-
-    }
-
-    public UnitOfMeasure(String description) {
-        this.description = description;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
 }

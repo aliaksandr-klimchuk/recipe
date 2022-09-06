@@ -1,11 +1,19 @@
 package alex.klimchuk.recipe.domain;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 /**
  * Copyright Alex Klimchuk (c) 2022.
  */
+@Data
 @Entity
+@Builder
+@ToString
+@EqualsAndHashCode(exclude = {"recipe"})
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "notes")
 public class Notes {
 
     @Id
@@ -16,39 +24,7 @@ public class Notes {
     private Recipe recipe;
 
     @Lob
+    @Column(name = "recipe_notes")
     private String recipeNotes;
-
-    public Notes() {
-
-    }
-
-    public Notes(Recipe recipe, String recipeNotes) {
-        this.recipe = recipe;
-        this.recipeNotes = recipeNotes;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
-    }
-
-    public String getRecipeNotes() {
-        return recipeNotes;
-    }
-
-    public void setRecipeNotes(String recipeNotes) {
-        this.recipeNotes = recipeNotes;
-    }
 
 }
