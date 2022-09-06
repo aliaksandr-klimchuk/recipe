@@ -1,5 +1,5 @@
-INSERT INTO unit_of_measure (description) VALUES ('Tablespoon');
-INSERT INTO unit_of_measure (description) VALUES ('Teaspoon');
+INSERT INTO unit_of_measure (description) VALUES ('TableSpoon');
+INSERT INTO unit_of_measure (description) VALUES ('TeaSpoon');
 INSERT INTO unit_of_measure (description) VALUES ('Ounce');
 INSERT INTO unit_of_measure (description) VALUES ('Pinch');
 INSERT INTO unit_of_measure (description) VALUES ('Pint');

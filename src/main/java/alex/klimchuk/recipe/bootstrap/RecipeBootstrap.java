@@ -36,7 +36,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 
         Set<Recipe> recipes = new LinkedHashSet<>();
 
-        Optional<UnitOfMeasure> eachUomOptional = unitOfMeasureRepository.findByDescription("Eaach");
+        Optional<UnitOfMeasure> eachUomOptional = unitOfMeasureRepository.findByDescription("Each");
 
         if(eachUomOptional.isEmpty()){
             throw new RuntimeException("Each UOM Not Found!");

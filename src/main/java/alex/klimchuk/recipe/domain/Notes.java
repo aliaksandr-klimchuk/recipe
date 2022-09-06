@@ -15,6 +15,7 @@ public class Notes {
     @OneToOne(cascade = CascadeType.ALL)
     private Recipe recipe;
 
+    @Lob
     private String recipeNotes;
 
     public Notes() {
