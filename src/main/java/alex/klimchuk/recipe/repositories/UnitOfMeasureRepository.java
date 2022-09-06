@@ -1,6 +1,5 @@
 package alex.klimchuk.recipe.repositories;
 
-import alex.klimchuk.recipe.domain.Category;
 import alex.klimchuk.recipe.domain.UnitOfMeasure;
 import org.springframework.data.repository.CrudRepository;
 

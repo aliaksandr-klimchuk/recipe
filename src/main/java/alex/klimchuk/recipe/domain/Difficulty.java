@@ -5,9 +5,9 @@ package alex.klimchuk.recipe.domain;
  */
 public enum Difficulty {
 
-    EASY(0L,"Easy"),
-    MODERATE(1L,"Moderate"),
-    HARD(2L,"Hard");
+    EASY(0L, "Easy"),
+    MODERATE(1L, "Moderate"),
+    HARD(2L, "Hard");
 
     private Long id;
 

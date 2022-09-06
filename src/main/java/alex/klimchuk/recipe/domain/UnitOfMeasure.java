@@ -6,7 +6,6 @@ import jakarta.persistence.*;
  * Copyright Alex Klimchuk (c) 2022.
  */
 @Entity
-@Table(name = "unit_of_measure")
 public class UnitOfMeasure {
 
     @Id
@@ -19,8 +18,7 @@ public class UnitOfMeasure {
 
     }
 
-    public UnitOfMeasure(Long id, String description) {
-        this.id = id;
+    public UnitOfMeasure(String description) {
         this.description = description;
     }
 

@@ -24,8 +24,7 @@ public class Category {
 
     }
 
-    public Category(Long id, String description, Set<Recipe> recipes) {
-        this.id = id;
+    public Category(String description, Set<Recipe> recipes) {
         this.description = description;
         this.recipes = recipes;
     }

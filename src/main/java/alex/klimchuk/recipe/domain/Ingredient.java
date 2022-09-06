@@ -28,8 +28,7 @@ public class Ingredient {
 
     }
 
-    public Ingredient(Long id, String description, BigDecimal amount, UnitOfMeasure unitOfMeasure, Recipe recipe) {
-        this.id = id;
+    public Ingredient(String description, BigDecimal amount, UnitOfMeasure unitOfMeasure, Recipe recipe) {
         this.description = description;
         this.amount = amount;
         this.unitOfMeasure = unitOfMeasure;

@@ -2,6 +2,7 @@ package alex.klimchuk.recipe.domain;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -26,13 +27,14 @@ public class Recipe {
 
     private String url;
 
+    @Lob
     private String directions;
 
     @Enumerated(value = EnumType.STRING)
     private Difficulty difficulty;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
-    private Set<Ingredient> ingredients;
+    private Set<Ingredient> ingredients = new HashSet<>();
 
     @Lob
     private Byte[] image;
@@ -44,16 +46,15 @@ public class Recipe {
     @JoinTable(name = "recipe_category",
             joinColumns = @JoinColumn(name = "recipe_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private Set<Category> categories;
+    private Set<Category> categories = new HashSet<>();
 
     public Recipe() {
 
     }
 
-    public Recipe(Long id, String description, Integer prepTime, Integer cookTime, Integer servings, String source,
-                  String url, String directions, Difficulty difficulty, Set<Ingredient> ingredients, Byte[] image,
-                  Notes notes, Set<Category> categories) {
-        this.id = id;
+    public Recipe(String description, Integer prepTime, Integer cookTime, Integer servings, String source, String url,
+                  String directions, Difficulty difficulty, Set<Ingredient> ingredients, Byte[] image, Notes notes,
+                  Set<Category> categories) {
         this.description = description;
         this.prepTime = prepTime;
         this.cookTime = cookTime;
