@@ -1,6 +1,7 @@
 package alex.klimchuk.recipe.services;
 
 import alex.klimchuk.recipe.domain.Recipe;
+import alex.klimchuk.recipe.dto.RecipeDto;
 
 import java.util.Set;
 
@@ -10,5 +11,9 @@ import java.util.Set;
 public interface RecipeService {
 
     Set<Recipe> getRecipes();
+
+    Recipe findById(Long id);
+
+    RecipeDto saveRecipeDto(RecipeDto recipeDto);
 
 }
