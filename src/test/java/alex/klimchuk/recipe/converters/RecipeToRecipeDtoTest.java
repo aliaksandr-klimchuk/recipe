@@ -50,7 +50,7 @@ public class RecipeToRecipeDtoTest {
     }
 
     @Test
-    public void convert() throws Exception {
+    public void testConvert() {
         Notes notes = new Notes();
         notes.setId(NOTES_ID);
 

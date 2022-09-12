@@ -33,7 +33,7 @@ public class UnitOfMeasureDtoToUnitOfMeasureTest {
     }
 
     @Test
-    public void convert() throws Exception {
+    public void testConvert() {
         UnitOfMeasureDto unitOfMeasureDto = UnitOfMeasureDto.builder()
                 .id(LONG_VALUE)
                 .description(DESCRIPTION)

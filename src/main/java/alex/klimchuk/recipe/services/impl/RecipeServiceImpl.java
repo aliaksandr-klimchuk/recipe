@@ -1,10 +1,11 @@
-package alex.klimchuk.recipe.services;
+package alex.klimchuk.recipe.services.impl;
 
 import alex.klimchuk.recipe.converters.RecipeDtoToRecipe;
 import alex.klimchuk.recipe.converters.RecipeToRecipeDto;
 import alex.klimchuk.recipe.domain.Recipe;
 import alex.klimchuk.recipe.dto.RecipeDto;
 import alex.klimchuk.recipe.repositories.RecipeRepository;
+import alex.klimchuk.recipe.services.RecipeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,6 +37,7 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     public Set<Recipe> getRecipes() {
         log.debug("Executed method get Recipes!");
+
         Set<Recipe> recipes = new HashSet<>();
         recipeRepository.findAll().iterator().forEachRemaining(recipes::add);
         return recipes;
@@ -43,7 +45,6 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public Recipe findById(Long id) {
-
         Optional<Recipe> recipeOptional = recipeRepository.findById(id);
 
         if (recipeOptional.isEmpty()) {
@@ -55,13 +56,24 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     @Transactional
+    public RecipeDto findDtoById(Long id) {
+        return recipeToRecipeDto.convert(findById(id));
+    }
+
+    @Override
+    @Transactional
     public RecipeDto saveRecipeDto(RecipeDto recipeDto) {
         Recipe detachedRecipe = recipeDtoToRecipe.convert(recipeDto);
 
         Recipe savedRecipe = recipeRepository.save(detachedRecipe);
-        log.debug("Saved RecipeId:" + savedRecipe.getId());
+        log.debug("Saved RecipeId: " + savedRecipe.getId());
 
         return recipeToRecipeDto.convert(savedRecipe);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        recipeRepository.deleteById(id);
     }
 
 }

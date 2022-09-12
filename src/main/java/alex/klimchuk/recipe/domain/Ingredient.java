@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "unit_of_measure")
+@Table(name = "ingredients")
 public class Ingredient {
 
     @Id

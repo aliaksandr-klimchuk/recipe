@@ -37,6 +37,7 @@ public class RecipeDtoToRecipe implements Converter<RecipeDto, Recipe> {
                 .directions(recipeDto.getDirections())
                 .servings(recipeDto.getServings())
                 .source(recipeDto.getSource())
+                .image(recipeDto.getImage())
                 .url(recipeDto.getUrl())
                 .notes(notesConverter.convert(recipeDto.getNotes()))
                 .build();

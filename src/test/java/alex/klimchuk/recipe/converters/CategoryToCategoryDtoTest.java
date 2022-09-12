@@ -32,7 +32,7 @@ public class CategoryToCategoryDtoTest {
     }
 
     @Test
-    public void convert() throws Exception {
+    public void testConvert() {
         Category category = Category.builder()
                 .id(ID_VALUE)
                 .description(DESCRIPTION)

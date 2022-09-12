@@ -1,5 +1,6 @@
 package alex.klimchuk.recipe.converters;
 
+import alex.klimchuk.recipe.domain.Recipe;
 import alex.klimchuk.recipe.dto.IngredientDto;
 import alex.klimchuk.recipe.domain.Ingredient;
 import lombok.Synchronized;
@@ -23,12 +24,21 @@ public class IngredientDtoToIngredient implements Converter<IngredientDto, Ingre
     @Nullable
     @Synchronized
     public Ingredient convert(IngredientDto ingredientDto) {
-        return Ingredient.builder()
+        Ingredient ingredient = Ingredient.builder()
                 .id(ingredientDto.getId())
                 .amount(ingredientDto.getAmount())
                 .description(ingredientDto.getDescription())
                 .unitOfMeasure(unitOfMeasureConverter.convert(ingredientDto.getUnitOfMeasure()))
                 .build();
+
+        if (ingredientDto.getRecipeId() != null) {
+            Recipe recipe = new Recipe();
+            recipe.setId(ingredientDto.getRecipeId());
+            ingredient.setRecipe(recipe);
+            recipe.addIngredient(ingredient);
+        }
+
+        return ingredient;
     }
 
 }

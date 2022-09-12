@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Copyright Alex Klimchuk (c) 2022.
  */
-class CategoryTest {
+public class CategoryTest {
 
     Category category;
 
@@ -17,14 +17,15 @@ class CategoryTest {
     }
 
     @Test
-    void getId() {
+    public void getId() {
         Long id = 4L;
         category.setId(id);
+
         assertEquals(id, category.getId());
     }
 
     @Test
-    void getDescription() {
+    public void getDescription() {
 
     }
 

@@ -7,6 +7,8 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
+
 /**
  * Copyright Alex Klimchuk (c) 2022.
  */
@@ -23,12 +25,18 @@ public class IngredientToIngredientDto implements Converter<Ingredient, Ingredie
     @Nullable
     @Synchronized
     public IngredientDto convert(Ingredient ingredient) {
-        return IngredientDto.builder()
+        IngredientDto ingredientDto = IngredientDto.builder()
                 .id(ingredient.getId())
                 .amount(ingredient.getAmount())
                 .description(ingredient.getDescription())
                 .unitOfMeasure(unitOfMeasureConverter.convert(ingredient.getUnitOfMeasure()))
                 .build();
+
+        if (Objects.nonNull(ingredient.getRecipe())) {
+            ingredientDto.setRecipeId(ingredient.getRecipe().getId());
+        }
+
+        return ingredientDto;
     }
 
 }

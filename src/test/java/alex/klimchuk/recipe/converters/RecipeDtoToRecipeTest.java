@@ -55,7 +55,7 @@ public class RecipeDtoToRecipeTest {
     }
 
     @Test
-    public void convert() throws Exception {
+    public void testConvert() {
         NotesDto notes = new NotesDto();
         notes.setId(NOTES_ID);
 

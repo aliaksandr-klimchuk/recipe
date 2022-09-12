@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Copyright Alex Klimchuk (c) 2022.
  */
-class IndexControllerTest {
+public class IndexControllerTest {
 
     @Mock
     RecipeService recipeService;
@@ -36,8 +36,9 @@ class IndexControllerTest {
     IndexController indexController;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         MockitoAnnotations.openMocks(this);
+
         indexController = new IndexController(recipeService);
     }
 
@@ -50,8 +51,7 @@ class IndexControllerTest {
     }
 
     @Test
-    void getIndexPage() {
-        // Given
+    public void testGetIndexPage() {
         Set<Recipe> recipesMock = new HashSet<>();
         Recipe recipe = new Recipe();
         recipe.setId(1L);
@@ -61,15 +61,13 @@ class IndexControllerTest {
 
         ArgumentCaptor<Set<Recipe>> argumentCaptor = ArgumentCaptor.forClass(Set.class);
 
-        // When
+        Set<Recipe> recipes = argumentCaptor.getValue();
         String viewName = indexController.getIndexPage(model);
 
-        // Then
         assertEquals("index", viewName);
+        assertEquals(1, recipes.size());
         verify(recipeService, times(1)).getRecipes();
         verify(model, times(1)).addAttribute(eq("recipes"), argumentCaptor.capture());
-        Set<Recipe> recipes = argumentCaptor.getValue();
-        assertEquals(1, recipes.size());
     }
 
 }

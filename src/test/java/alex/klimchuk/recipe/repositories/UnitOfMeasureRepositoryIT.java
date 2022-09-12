@@ -17,26 +17,28 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 @DataJpaTest
 @RunWith(SpringRunner.class)
-class UnitOfMeasureRepositoryIT {
+public class UnitOfMeasureRepositoryIT {
 
     @Autowired
     UnitOfMeasureRepository unitOfMeasureRepository;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
 
     }
 
     @Test
     //@DirtiesContext
-    void findByDescription() {
+    public void testFindByDescription() {
         Optional<UnitOfMeasure> unitOfMeasureOptional = unitOfMeasureRepository.findByDescription("Cup");
+
         assertEquals("Cup", unitOfMeasureOptional.get().getDescription());
     }
 
     @Test
-    void findByDescriptionTeaSpoon() {
+    public void testFindByDescriptionTeaSpoon() {
         Optional<UnitOfMeasure> unitOfMeasureOptional = unitOfMeasureRepository.findByDescription("TeaSpoon");
+
         assertEquals("TeaSpoon", unitOfMeasureOptional.get().getDescription());
     }
 

@@ -32,7 +32,7 @@ public class NotesToNotesDtoTest {
     }
 
     @Test
-    public void convert() throws Exception {
+    public void testConvert() {
         Notes notes = Notes.builder()
                 .id(ID_VALUE)
                 .recipeNotes(RECIPE_NOTES)

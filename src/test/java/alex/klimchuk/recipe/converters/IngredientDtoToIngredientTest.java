@@ -39,7 +39,7 @@ public class IngredientDtoToIngredientTest {
     }
 
     @Test
-    public void convert() throws Exception {
+    public void testConvert() {
         UnitOfMeasureDto unitOfMeasureDto = new UnitOfMeasureDto();
         unitOfMeasureDto.setId(UOM_ID);
 
@@ -61,7 +61,7 @@ public class IngredientDtoToIngredientTest {
     }
 
     @Test
-    public void convertWithNullUOM() {
+    public void testConvertWithNullUOM() {
         IngredientDto ingredientDto = IngredientDto.builder()
                 .id(ID_VALUE)
                 .amount(AMOUNT)
