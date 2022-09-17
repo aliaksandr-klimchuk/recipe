@@ -1,6 +1,7 @@
 package alex.klimchuk.recipe.controllers;
 
 import alex.klimchuk.recipe.dto.RecipeDto;
+import alex.klimchuk.recipe.handlers.ControllerExceptionHandler;
 import alex.klimchuk.recipe.services.ImageService;
 import alex.klimchuk.recipe.services.RecipeService;
 import org.junit.Before;
@@ -38,7 +39,9 @@ public class ImageControllerTest {
         MockitoAnnotations.openMocks(this);
 
         controller = new ImageController(imageService, recipeService);
-        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(controller)
+                .setControllerAdvice(new ControllerExceptionHandler())
+                .build();
     }
 
     @Test
@@ -93,6 +96,13 @@ public class ImageControllerTest {
         byte[] bytesFromResponse = response.getContentAsByteArray();
 
         assertEquals(s.getBytes().length, bytesFromResponse.length);
+    }
+
+    @Test
+    public void testGetImageNumberFormatException() throws Exception {
+        mockMvc.perform(get("/recipe/asdf/recipeImage"))
+                .andExpect(status().isBadRequest())
+                .andExpect(view().name("errorPage400"));
     }
 
 }

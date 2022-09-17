@@ -2,13 +2,18 @@ package alex.klimchuk.recipe.controllers;
 
 import alex.klimchuk.recipe.dto.RecipeDto;
 import alex.klimchuk.recipe.services.RecipeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * Copyright Alex Klimchuk (c) 2022.
  */
+@Slf4j
 @Controller
 public class RecipeController {
 

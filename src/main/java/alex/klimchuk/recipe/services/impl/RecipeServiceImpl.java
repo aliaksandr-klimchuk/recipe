@@ -4,6 +4,7 @@ import alex.klimchuk.recipe.converters.RecipeDtoToRecipe;
 import alex.klimchuk.recipe.converters.RecipeToRecipeDto;
 import alex.klimchuk.recipe.domain.Recipe;
 import alex.klimchuk.recipe.dto.RecipeDto;
+import alex.klimchuk.recipe.exceptions.NotFoundException;
 import alex.klimchuk.recipe.repositories.RecipeRepository;
 import alex.klimchuk.recipe.services.RecipeService;
 import lombok.extern.slf4j.Slf4j;
@@ -48,7 +49,7 @@ public class RecipeServiceImpl implements RecipeService {
         Optional<Recipe> recipeOptional = recipeRepository.findById(id);
 
         if (recipeOptional.isEmpty()) {
-            throw new RuntimeException("Recipe Not Found!");
+            throw new NotFoundException("Recipe Not Found! For id: " + id);
         }
 
         return recipeOptional.get();
