@@ -1,3 +1,6 @@
+<!--~
+  ~ Copyright Alex Klimchuk (c) 2022.
+  -->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -20,8 +23,8 @@
 <div class="container-fluid" style="margin-top: 20px">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <!--/*@thymesVar id="ingredient" type="alex.klimchuk.recipe.dto.IngredientDto"*/-->
-            <form  th:object="${ingredient}" th:action="@{'/recipe/' + ${ingredient.getRecipeId()} + '/ingredient'} " method="post">
+            <!--/*@thymesVar id="ingredient" type="guru.springframework.commands.IngredientCommand"*/-->
+            <form th:action="@{'/recipe/' + ${ingredient.getRecipeId()} + '/ingredient'} " th:object="${ingredient}">
                 <input type="hidden" th:field="*{id}"/>
                 <div class="pannel-group">
                     <div class="panel panel-primary">
@@ -44,11 +47,12 @@
 
                                 <div class="col-md-3 form-group">
                                     <label>UOM:</label>
-                                    <select class="form-control" name="unitOfMeasure.id">
+                                    <select class="form-control" name="uom.id">
                                         <option th:each="uomEach : ${uomList}"
                                                 th:value="${uomEach.id}"
                                                 th:selected="${uomEach.id.equals(ingredient.unitOfMeasure.id)}"
-                                                th:text="${uomEach.description}">Each</option>
+                                                th:text="${uomEach.description}">Each
+                                        </option>
                                     </select>
                                 </div>
                             </div>

@@ -1,9 +1,11 @@
 package alex.klimchuk.recipe.converters;
 
-import alex.klimchuk.recipe.dto.CategoryDto;
 import alex.klimchuk.recipe.domain.Category;
+import alex.klimchuk.recipe.dto.CategoryDto;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.Objects;
 
 import static org.junit.Assert.*;
 
@@ -40,7 +42,7 @@ public class CategoryToCategoryDtoTest {
 
         CategoryDto categoryDto = converter.convert(category);
 
-        assertEquals(ID_VALUE, categoryDto.getId());
+        assertEquals(ID_VALUE, Objects.requireNonNull(categoryDto).getId());
         assertEquals(DESCRIPTION, categoryDto.getDescription());
     }
 

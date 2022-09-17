@@ -1,9 +1,11 @@
 package alex.klimchuk.recipe.converters;
 
-import alex.klimchuk.recipe.dto.UnitOfMeasureDto;
 import alex.klimchuk.recipe.domain.UnitOfMeasure;
+import alex.klimchuk.recipe.dto.UnitOfMeasureDto;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.Objects;
 
 import static org.junit.Assert.*;
 
@@ -41,7 +43,7 @@ public class UnitOfMeasureToUnitOfMeasureDtoTest {
 
         UnitOfMeasureDto unitOfMeasureDto = unitOfMeasureConverter.convert(unitOfMeasure);
 
-        assertEquals(LONG_VALUE, unitOfMeasureDto.getId());
+        assertEquals(LONG_VALUE, Objects.requireNonNull(unitOfMeasureDto).getId());
         assertEquals(DESCRIPTION, unitOfMeasureDto.getDescription());
     }
 

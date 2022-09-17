@@ -1,9 +1,11 @@
 package alex.klimchuk.recipe.converters;
 
-import alex.klimchuk.recipe.dto.NotesDto;
 import alex.klimchuk.recipe.domain.Notes;
+import alex.klimchuk.recipe.dto.NotesDto;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.Objects;
 
 import static org.junit.Assert.*;
 
@@ -40,7 +42,7 @@ public class NotesToNotesDtoTest {
 
         NotesDto notesDto = converter.convert(notes);
 
-        assertEquals(ID_VALUE, notesDto.getId());
+        assertEquals(ID_VALUE, Objects.requireNonNull(notesDto).getId());
         assertEquals(RECIPE_NOTES, notesDto.getRecipeNotes());
     }
 

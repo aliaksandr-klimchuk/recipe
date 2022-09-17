@@ -1,13 +1,14 @@
 package alex.klimchuk.recipe.converters;
 
-import alex.klimchuk.recipe.dto.IngredientDto;
 import alex.klimchuk.recipe.domain.Ingredient;
 import alex.klimchuk.recipe.domain.Recipe;
 import alex.klimchuk.recipe.domain.UnitOfMeasure;
+import alex.klimchuk.recipe.dto.IngredientDto;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 import static org.junit.Assert.*;
 
@@ -50,7 +51,7 @@ public class IngredientToIngredientDtoTest {
 
         IngredientDto ingredientDto = converter.convert(ingredient);
 
-        assertNull(ingredientDto.getUnitOfMeasure());
+        assertNull(Objects.requireNonNull(ingredientDto).getUnitOfMeasure());
         assertEquals(ID_VALUE, ingredientDto.getId());
         assertEquals(AMOUNT, ingredientDto.getAmount());
         assertEquals(DESCRIPTION, ingredientDto.getDescription());
@@ -70,7 +71,7 @@ public class IngredientToIngredientDtoTest {
 
         IngredientDto ingredientDto = converter.convert(ingredient);
 
-        assertEquals(ID_VALUE, ingredientDto.getId());
+        assertEquals(ID_VALUE, Objects.requireNonNull(ingredientDto).getId());
         assertNotNull(ingredientDto.getUnitOfMeasure());
         assertEquals(UOM_ID, ingredientDto.getUnitOfMeasure().getId());
         assertEquals(AMOUNT, ingredientDto.getAmount());
