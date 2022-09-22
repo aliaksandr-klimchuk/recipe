@@ -34,7 +34,7 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
         log.error("Handling not found exception!", exception.getMessage());
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("exception", exception);
-        modelAndView.setViewName("errorPage404");
+        modelAndView.setViewName("/errorPage404");
         return modelAndView;
     }
 
@@ -44,10 +44,11 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
         log.error("Handling number format exception!", exception.getMessage());
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("exception", exception);
-        modelAndView.setViewName("errorPage400");
+        modelAndView.setViewName("/errorPage400");
         return modelAndView;
     }
 
+    @Override
     public ResponseEntity<Object> handleHttpMessageNotReadable(final HttpMessageNotReadableException ex,
                                                                final HttpHeaders headers,
                                                                final HttpStatus status, final WebRequest request) {
@@ -55,6 +56,7 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
         return handleExceptionInternal(ex, responseBody, headers, status, request);
     }
 
+    @Override
     public ResponseEntity<Object> handleMethodArgumentNotValid(final MethodArgumentNotValidException ex,
                                                                final HttpHeaders headers,
                                                                final HttpStatus status, final WebRequest request) {
