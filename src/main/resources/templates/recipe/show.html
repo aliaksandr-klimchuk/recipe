@@ -1,6 +1,4 @@
-<!--~
-  ~ Copyright Alex Klimchuk (c) 2022.
-  -->
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -31,7 +29,6 @@
                             <div class="col-md-3">
                                 <h1 class="panel-title" th:text="${recipe.description}">Recipe Description Here!</h1>
                             </div>
-
                             <div class="col-md-1">
                                 <a class="btn btn-default" href="#"
                                    role="button" th:href="@{'/recipe/' + ${recipe.id} + '/image'}">Change Image</a>
@@ -123,7 +120,8 @@
                                     <li th:each="ingredient : ${recipe.ingredients}"
                                         th:text="${(ingredient.getAmount() +
                                         ' ' + ingredient.uom.getDescription() +
-                                        ' - ' + ingredient.getDescription())}">1 Teaspoon of Sugar
+                                        ' - ' + ingredient.getDescription())}">
+                                        1 Teaspoon of Sugar
                                     </li>
                                 </ul>
                             </div>
