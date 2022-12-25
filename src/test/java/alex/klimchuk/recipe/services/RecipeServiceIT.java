@@ -1,9 +1,9 @@
 package alex.klimchuk.recipe.services;
 
-import alex.klimchuk.recipe.dto.RecipeDto;
 import alex.klimchuk.recipe.converters.RecipeDtoToRecipe;
 import alex.klimchuk.recipe.converters.RecipeToRecipeDto;
 import alex.klimchuk.recipe.domain.Recipe;
+import alex.klimchuk.recipe.dto.RecipeDto;
 import alex.klimchuk.recipe.repositories.RecipeRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +12,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.Assert.*;
+import java.util.Objects;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Copyright Alex Klimchuk (c) 2022.
@@ -43,7 +45,7 @@ public class RecipeServiceIT {
 
         RecipeDto recipeDtoMock = recipeToRecipeDto.convert(testRecipe);
 
-        assert recipeDtoMock != null;
+        assert Objects.nonNull(recipeDtoMock);
         recipeDtoMock.setDescription(NEW_DESCRIPTION);
 
         RecipeDto savedRecipeDto = recipeService.saveRecipeDto(recipeDtoMock);

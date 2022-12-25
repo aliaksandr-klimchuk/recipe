@@ -7,10 +7,16 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Objects;
 
 /**
  * Copyright Alex Klimchuk (c) 2022.
@@ -42,7 +48,7 @@ public class ImageController {
     public void renderImageFromDB(@PathVariable String id, HttpServletResponse response) throws IOException {
         RecipeDto recipeDto = recipeService.findDtoById(Long.valueOf(id));
 
-        if (recipeDto.getImage() != null) {
+        if (Objects.nonNull(recipeDto.getImage())) {
             byte[] byteArray = new byte[recipeDto.getImage().length];
             int i = 0;
 

@@ -1,12 +1,14 @@
 package alex.klimchuk.recipe.converters;
 
+import alex.klimchuk.recipe.domain.Ingredient;
 import alex.klimchuk.recipe.domain.Recipe;
 import alex.klimchuk.recipe.dto.IngredientDto;
-import alex.klimchuk.recipe.domain.Ingredient;
 import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
+
+import java.util.Objects;
 
 /**
  * Copyright Alex Klimchuk (c) 2022.
@@ -31,7 +33,7 @@ public class IngredientDtoToIngredient implements Converter<IngredientDto, Ingre
                 .unitOfMeasure(unitOfMeasureConverter.convert(ingredientDto.getUnitOfMeasure()))
                 .build();
 
-        if (ingredientDto.getRecipeId() != null) {
+        if (Objects.nonNull(ingredientDto.getRecipeId())) {
             Recipe recipe = new Recipe();
             recipe.setId(ingredientDto.getRecipeId());
             ingredient.setRecipe(recipe);

@@ -1,11 +1,13 @@
 package alex.klimchuk.recipe.converters;
 
-import alex.klimchuk.recipe.dto.RecipeDto;
 import alex.klimchuk.recipe.domain.Recipe;
+import alex.klimchuk.recipe.dto.RecipeDto;
 import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
+
+import java.util.Objects;
 
 /**
  * Copyright Alex Klimchuk (c) 2022.
@@ -42,12 +44,15 @@ public class RecipeDtoToRecipe implements Converter<RecipeDto, Recipe> {
                 .notes(notesConverter.convert(recipeDto.getNotes()))
                 .build();
 
-        if (recipeDto.getCategories() != null && recipeDto.getCategories().size() > 0) {
+        boolean isHasCategories = Objects.nonNull(recipeDto.getCategories()) && !recipeDto.getCategories().isEmpty();
+        boolean isHasIngredients = Objects.nonNull(recipeDto.getIngredients()) && !recipeDto.getIngredients().isEmpty();
+
+        if (isHasCategories) {
             recipeDto.getCategories()
                     .forEach(category -> recipe.getCategories().add(categoryConverter.convert(category)));
         }
 
-        if (recipeDto.getIngredients() != null && recipeDto.getIngredients().size() > 0) {
+        if (isHasIngredients) {
             recipeDto.getIngredients()
                     .forEach(ingredient -> recipe.getIngredients().add(ingredientConverter.convert(ingredient)));
         }
