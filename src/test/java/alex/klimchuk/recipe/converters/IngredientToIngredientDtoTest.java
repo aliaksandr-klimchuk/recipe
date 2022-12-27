@@ -7,7 +7,6 @@ import alex.klimchuk.recipe.dto.IngredientDto;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.math.BigDecimal;
 import java.util.Objects;
 
 import static org.junit.Assert.*;
@@ -18,7 +17,7 @@ import static org.junit.Assert.*;
 public class IngredientToIngredientDtoTest {
 
     public static final Recipe RECIPE = new Recipe();
-    public static final BigDecimal AMOUNT = new BigDecimal("1");
+    public static final Double AMOUNT = 1.0;
     public static final String DESCRIPTION = "CheeseBurger";
     public static final Long ID_VALUE = 1L;
     public static final Long UOM_ID = 2L;

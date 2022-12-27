@@ -3,8 +3,6 @@ package alex.klimchuk.recipe.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.math.BigDecimal;
-
 /**
  * Copyright Alex Klimchuk (c) 2022.
  */
@@ -26,7 +24,7 @@ public class Ingredient {
     private String description;
 
     @Column(name = "amount")
-    private BigDecimal amount;
+    private Double amount;
 
     @OneToOne(fetch = FetchType.EAGER)
     private UnitOfMeasure unitOfMeasure;
@@ -34,17 +32,10 @@ public class Ingredient {
     @ManyToOne
     private Recipe recipe;
 
-    public Ingredient(String description, BigDecimal amount, UnitOfMeasure unitOfMeasure) {
+    public Ingredient(String description, Double amount, UnitOfMeasure unitOfMeasure) {
         this.description = description;
         this.amount = amount;
         this.unitOfMeasure = unitOfMeasure;
-    }
-
-    public Ingredient(String description, BigDecimal amount, UnitOfMeasure unitOfMeasure, Recipe recipe) {
-        this.description = description;
-        this.amount = amount;
-        this.unitOfMeasure = unitOfMeasure;
-        this.recipe = recipe;
     }
 
 }

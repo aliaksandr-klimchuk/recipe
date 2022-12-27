@@ -1,13 +1,10 @@
 package alex.klimchuk.recipe.converters;
 
+import alex.klimchuk.recipe.domain.Ingredient;
 import alex.klimchuk.recipe.dto.IngredientDto;
 import alex.klimchuk.recipe.dto.UnitOfMeasureDto;
-import alex.klimchuk.recipe.domain.Ingredient;
-import alex.klimchuk.recipe.domain.Recipe;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.math.BigDecimal;
 
 import static org.junit.Assert.*;
 
@@ -16,7 +13,7 @@ import static org.junit.Assert.*;
  */
 public class IngredientDtoToIngredientTest {
 
-    public static final BigDecimal AMOUNT = new BigDecimal("1");
+    public static final Double AMOUNT = 1.0;
     public static final String DESCRIPTION = "CheeseBurger";
     public static final Long ID_VALUE = 1L;
     public static final Long UOM_ID = 2L;
