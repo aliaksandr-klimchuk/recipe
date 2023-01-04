@@ -13,9 +13,13 @@ import lombok.*;
 public class IngredientDto {
 
     private Long id;
+
     private Long recipeId;
+
     private String description;
+
     private Double amount;
+
     private UnitOfMeasureDto unitOfMeasure;
 
 }

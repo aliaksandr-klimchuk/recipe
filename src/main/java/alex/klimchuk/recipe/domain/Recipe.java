@@ -13,7 +13,6 @@ import java.util.Set;
 @Data
 @Entity
 @Builder
-@ToString
 @EqualsAndHashCode(exclude = {"difficulty", "ingredients", "categories"})
 @NoArgsConstructor
 @AllArgsConstructor

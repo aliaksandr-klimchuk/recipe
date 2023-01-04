@@ -13,6 +13,7 @@ import lombok.*;
 public class CategoryDto {
 
     private Long id;
+
     private String description;
 
 }

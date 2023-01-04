@@ -9,7 +9,6 @@ import lombok.*;
 @Data
 @Entity
 @Builder
-@ToString
 @EqualsAndHashCode(exclude = {"recipe"})
 @NoArgsConstructor
 @AllArgsConstructor
