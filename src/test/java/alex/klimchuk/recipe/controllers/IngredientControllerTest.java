@@ -55,7 +55,7 @@ public class IngredientControllerTest {
 
         mockMvc.perform(get("/recipe/1/ingredients"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("recipe/ingredient/list"))
+                .andExpect(view().name("recipe/ingredients/list"))
                 .andExpect(model().attributeExists("recipe"));
 
         verify(recipeService, times(1)).findDtoById(anyLong());
@@ -67,23 +67,23 @@ public class IngredientControllerTest {
 
         when(ingredientService.findByRecipeIdAndIngredientId(anyLong(), anyLong())).thenReturn(ingredientDtoMock);
 
-        mockMvc.perform(get("/recipe/1/ingredient/2/show"))
+        mockMvc.perform(get("/recipe/1/ingredients/2/show"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("recipe/ingredient/show"))
+                .andExpect(view().name("recipe/ingredients/show"))
                 .andExpect(model().attributeExists("ingredient"));
     }
 
     @Test
-    public void testNewIngredientForm() throws Exception {
+    public void testNewingredientsForm() throws Exception {
         RecipeDto recipeDtoMock = new RecipeDto();
         recipeDtoMock.setId(1L);
 
         when(recipeService.findDtoById(anyLong())).thenReturn(recipeDtoMock);
         when(unitOfMeasureService.findAll()).thenReturn(new HashSet<>());
 
-        mockMvc.perform(get("/recipe/1/ingredient/new"))
+        mockMvc.perform(get("/recipe/1/ingredients/new"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("recipe/ingredient/ingredientForm"))
+                .andExpect(view().name("recipe/ingredients/ingredientsForm"))
                 .andExpect(model().attributeExists("ingredient"))
                 .andExpect(model().attributeExists("uomList"));
 
@@ -91,15 +91,15 @@ public class IngredientControllerTest {
     }
 
     @Test
-    public void testUpdateIngredientForm() throws Exception {
+    public void testUpdateingredientsForm() throws Exception {
         IngredientDto ingredientDtoMock = new IngredientDto();
 
         when(ingredientService.findByRecipeIdAndIngredientId(anyLong(), anyLong())).thenReturn(ingredientDtoMock);
         when(unitOfMeasureService.findAll()).thenReturn(new HashSet<>());
 
-        mockMvc.perform(get("/recipe/1/ingredient/2/update"))
+        mockMvc.perform(get("/recipe/1/ingredients/2/update"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("recipe/ingredient/ingredientForm"))
+                .andExpect(view().name("recipe/ingredients/ingredientsForm"))
                 .andExpect(model().attributeExists("ingredient"))
                 .andExpect(model().attributeExists("uomList"));
     }
@@ -112,17 +112,17 @@ public class IngredientControllerTest {
 
         when(ingredientService.saveIngredientDto(any())).thenReturn(ingredientDtoMock);
 
-        mockMvc.perform(post("/recipe/2/ingredient")
+        mockMvc.perform(post("/recipe/2/ingredients")
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("id", "")
                         .param("description", "some string"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/recipe/2/ingredient/3/show"));
+                .andExpect(view().name("redirect:/recipe/2/ingredients/3/show"));
     }
 
     @Test
     public void testDeleteIngredient() throws Exception {
-        mockMvc.perform(get("/recipe/2/ingredient/3/delete"))
+        mockMvc.perform(get("/recipe/2/ingredients/3/delete"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/recipe/2/ingredients"));
 

@@ -133,7 +133,6 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
             throw new NotFoundException("Cups UnitOfMeasure Not Found");
         }
 
-        // Get optionals
         UnitOfMeasure eachUom = eachUomOptional.get();
         UnitOfMeasure tableSpoonUom = tableSpoonUomOptional.get();
         UnitOfMeasure teaSpoonUom = teaSpoonUomOptional.get();
@@ -141,7 +140,6 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         UnitOfMeasure pintUom = pintUomOptional.get();
         UnitOfMeasure cupsUom = cupsUomOptional.get();
 
-        // Get Categories
         Optional<Category> americanCategoryOptional = categoryRepository.findByDescription("American");
 
         if (americanCategoryOptional.isEmpty()) {
@@ -157,7 +155,6 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         Category americanCategory = americanCategoryOptional.get();
         Category mexicanCategory = mexicanCategoryOptional.get();
 
-        // Yummy Perfect Guacamole Recipe
         Recipe guacamoleRecipe = new Recipe();
         guacamoleRecipe.setDescription("Perfect Guacamole");
         guacamoleRecipe.setPrepTime(10);
@@ -214,10 +211,8 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         guacamoleRecipe.setServings(4);
         guacamoleRecipe.setSource("Simple Recipes");
 
-        // Add to return list
         recipes.add(guacamoleRecipe);
 
-        // Yummy Spicy Grilled Chicken Tacos
         Recipe tacosRecipe = new Recipe();
         tacosRecipe.setDescription("Spicy Grilled Chicken Taco");
         tacosRecipe.setCookTime(9);

@@ -20,6 +20,6 @@ public class IngredientDto {
 
     private Double amount;
 
-    private UnitOfMeasureDto unitOfMeasure;
+    private UnitOfMeasureDto unitOfMeasureDto;
 
 }

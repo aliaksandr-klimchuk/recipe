@@ -44,7 +44,7 @@ public class IngredientDtoToIngredientTest {
                 .id(ID_VALUE)
                 .amount(AMOUNT)
                 .description(DESCRIPTION)
-                .unitOfMeasure(unitOfMeasureDto)
+                .unitOfMeasureDto(unitOfMeasureDto)
                 .build();
 
         Ingredient ingredient = converter.convert(ingredientDto);

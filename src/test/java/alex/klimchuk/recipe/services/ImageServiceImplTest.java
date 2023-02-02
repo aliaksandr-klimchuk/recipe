@@ -36,7 +36,7 @@ public class ImageServiceImplTest {
     @Test
     public void testSaveImageFile() throws Exception {
         MultipartFile multipartFile = new MockMultipartFile("imagefile", "testing.txt", "text/plain",
-                "Spring Framework Guru".getBytes());
+                "Spring Framework".getBytes());
         Long id = 1L;
 
         Recipe recipe = new Recipe();

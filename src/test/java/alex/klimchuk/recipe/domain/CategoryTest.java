@@ -1,8 +1,9 @@
 package alex.klimchuk.recipe.domain;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Copyright Alex Klimchuk (c) 2022.
@@ -17,7 +18,7 @@ public class CategoryTest {
     }
 
     @Test
-    public void getId() {
+    public void testGetId() {
         Long id = 4L;
         category.setId(id);
 
@@ -25,12 +26,12 @@ public class CategoryTest {
     }
 
     @Test
-    public void getDescription() {
+    public void testGetDescription() {
 
     }
 
     @Test
-    void getRecipes() {
+    public void testGetRecipes() {
 
     }
 

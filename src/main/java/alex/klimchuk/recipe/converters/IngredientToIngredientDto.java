@@ -1,7 +1,7 @@
 package alex.klimchuk.recipe.converters;
 
-import alex.klimchuk.recipe.dto.IngredientDto;
 import alex.klimchuk.recipe.domain.Ingredient;
+import alex.klimchuk.recipe.dto.IngredientDto;
 import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
@@ -29,7 +29,7 @@ public class IngredientToIngredientDto implements Converter<Ingredient, Ingredie
                 .id(ingredient.getId())
                 .amount(ingredient.getAmount())
                 .description(ingredient.getDescription())
-                .unitOfMeasure(unitOfMeasureConverter.convert(ingredient.getUnitOfMeasure()))
+                .unitOfMeasureDto(unitOfMeasureConverter.convert(ingredient.getUnitOfMeasure()))
                 .build();
 
         if (Objects.nonNull(ingredient.getRecipe())) {

@@ -1,7 +1,6 @@
 package alex.klimchuk.recipe.handlers;
 
 import alex.klimchuk.recipe.exceptions.NotFoundException;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataAccessException;
@@ -19,6 +18,7 @@ import org.springframework.web.server.MethodNotAllowedException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
 
 /**

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Slf4j
 @Controller
-@RequestMapping("/recipe")
+@RequestMapping("/recipe/{recipeId}/ingredients")
 public class IngredientController {
 
     private final IngredientService ingredientService;
@@ -30,22 +30,22 @@ public class IngredientController {
         this.unitOfMeasureService = unitOfMeasureService;
     }
 
-    @GetMapping("/{recipeId}/ingredients")
+    @GetMapping
     public String listIngredients(@PathVariable String recipeId, Model model) {
         log.debug("Getting ingredient list for recipe id: " + recipeId);
 
         model.addAttribute("recipe", recipeService.findDtoById(Long.valueOf(recipeId)));
-        return "recipe/ingredient/list";
+        return "recipe/ingredients/list";
     }
 
-    @GetMapping("/{recipeId}/ingredient/{id}/show")
+    @GetMapping("/{id}/show")
     public String showRecipeIngredient(@PathVariable String recipeId,
                                        @PathVariable String id, Model model) {
         model.addAttribute("ingredient", ingredientService.findByRecipeIdAndIngredientId(Long.valueOf(recipeId), Long.valueOf(id)));
-        return "recipe/ingredient/show";
+        return "recipe/ingredients/show";
     }
 
-    @GetMapping("/{recipeId}/ingredient/new")
+    @PostMapping("/new")
     public String newRecipe(@PathVariable String recipeId, Model model) {
         RecipeDto recipeDto = recipeService.findDtoById(Long.valueOf(recipeId));
 
@@ -53,31 +53,31 @@ public class IngredientController {
         ingredientDto.setRecipeId(Long.valueOf(recipeId));
         model.addAttribute("ingredient", ingredientDto);
 
-        ingredientDto.setUnitOfMeasure(new UnitOfMeasureDto());
+        ingredientDto.setUnitOfMeasureDto(new UnitOfMeasureDto());
 
         model.addAttribute("uomList", unitOfMeasureService.findAll());
-        return "recipe/ingredient/ingredientForm";
+        return "recipe/ingredients/ingredientsForm";
     }
 
-    @GetMapping("/{recipeId}/ingredient/{id}/update")
+    @PutMapping("/{id}/update")
     public String updateRecipeIngredient(@PathVariable String recipeId,
                                          @PathVariable String id, Model model) {
         model.addAttribute("ingredient", ingredientService.findByRecipeIdAndIngredientId(Long.valueOf(recipeId), Long.valueOf(id)));
         model.addAttribute("uomList", unitOfMeasureService.findAll());
-        return "recipe/ingredient/ingredientForm";
+        return "recipe/ingredients/ingredientsForm";
     }
 
-    @PostMapping("/{recipeId}/ingredient")
+    @PostMapping
     public String saveOrUpdate(@ModelAttribute IngredientDto ingredientDto) {
         IngredientDto savedDto = ingredientService.saveIngredientDto(ingredientDto);
 
         log.debug("Saved recipe id: " + savedDto.getRecipeId());
         log.debug("Saved ingredient id: " + savedDto.getId());
 
-        return "redirect:/recipe/" + savedDto.getRecipeId() + "/ingredient/" + savedDto.getId() + "/show";
+        return "redirect:/recipe/" + savedDto.getRecipeId() + "/ingredients/" + savedDto.getId() + "/show";
     }
 
-    @GetMapping("/{recipeId}/ingredient/{id}/delete")
+    @DeleteMapping("/{id}/delete")
     public String deleteIngredient(@PathVariable String recipeId,
                                    @PathVariable String id) {
         log.debug("Deleting ingredient id: " + id);

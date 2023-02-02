@@ -3,16 +3,13 @@ package alex.klimchuk.recipe.controllers;
 import alex.klimchuk.recipe.dto.RecipeDto;
 import alex.klimchuk.recipe.services.ImageService;
 import alex.klimchuk.recipe.services.RecipeService;
-import jakarta.servlet.http.HttpServletResponse;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,6 +19,7 @@ import java.util.Objects;
  * Copyright Alex Klimchuk (c) 2022.
  */
 @Controller
+@RequestMapping("/recipe/{id}")
 public class ImageController {
 
     private final ImageService imageService;
@@ -32,19 +30,19 @@ public class ImageController {
         this.recipeService = recipeService;
     }
 
-    @GetMapping("recipe/{id}/image")
+    @GetMapping("/image")
     public String showUploadForm(@PathVariable String id, Model model) {
         model.addAttribute("recipe", recipeService.findDtoById(Long.valueOf(id)));
         return "recipe/imageUploadForm";
     }
 
-    @PostMapping("recipe/{id}/image")
+    @PostMapping("/image")
     public String saveImageFile(@PathVariable String id, @RequestParam("imagefile") MultipartFile file) {
         imageService.saveImageFile(Long.valueOf(id), file);
         return "redirect:/recipe/" + id + "/show";
     }
 
-    @GetMapping("recipe/{id}/recipeimage")
+    @GetMapping("/recipeimage")
     public void renderImageFromDB(@PathVariable String id, HttpServletResponse response) throws IOException {
         RecipeDto recipeDto = recipeService.findDtoById(Long.valueOf(id));
 

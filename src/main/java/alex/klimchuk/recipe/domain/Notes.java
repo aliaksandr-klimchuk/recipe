@@ -1,7 +1,8 @@
 package alex.klimchuk.recipe.domain;
 
-import jakarta.persistence.*;
 import lombok.*;
+
+import javax.persistence.*;
 
 /**
  * Copyright Alex Klimchuk (c) 2022.

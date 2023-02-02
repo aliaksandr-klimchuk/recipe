@@ -1,10 +1,10 @@
 package alex.klimchuk.recipe.services.impl;
 
-import alex.klimchuk.recipe.dto.IngredientDto;
 import alex.klimchuk.recipe.converters.IngredientDtoToIngredient;
 import alex.klimchuk.recipe.converters.IngredientToIngredientDto;
 import alex.klimchuk.recipe.domain.Ingredient;
 import alex.klimchuk.recipe.domain.Recipe;
+import alex.klimchuk.recipe.dto.IngredientDto;
 import alex.klimchuk.recipe.repositories.RecipeRepository;
 import alex.klimchuk.recipe.repositories.UnitOfMeasureRepository;
 import alex.klimchuk.recipe.services.IngredientService;
@@ -64,7 +64,6 @@ public class IngredientServiceImpl implements IngredientService {
         Optional<Recipe> recipeOptional = recipeRepository.findById(ingredientDto.getRecipeId());
 
         if (recipeOptional.isEmpty()) {
-            //todo toss error if not found!
             log.error("Recipe not found for id: " + ingredientDto.getRecipeId());
             return new IngredientDto();
         } else {
@@ -81,8 +80,8 @@ public class IngredientServiceImpl implements IngredientService {
                 ingredientFound.setDescription(ingredientDto.getDescription());
                 ingredientFound.setAmount(ingredientDto.getAmount());
                 ingredientFound.setUnitOfMeasure(unitOfMeasureRepository
-                        .findById(ingredientDto.getUnitOfMeasure().getId())
-                        .orElseThrow(() -> new RuntimeException("UnitOfMeasure Not Found!"))); //todo address this
+                        .findById(ingredientDto.getUnitOfMeasureDto().getId())
+                        .orElseThrow(() -> new RuntimeException("UnitOfMeasure Not Found!")));
             } else {
                 Ingredient ingredient = ingredientDtoToIngredient.convert(ingredientDto);
                 ingredient.setRecipe(recipe);
@@ -99,7 +98,7 @@ public class IngredientServiceImpl implements IngredientService {
                 savedIngredientOptional = savedRecipe.getIngredients().stream()
                         .filter(recipeIngredients -> recipeIngredients.getDescription().equals(ingredientDto.getDescription()))
                         .filter(recipeIngredients -> recipeIngredients.getAmount().equals(ingredientDto.getAmount()))
-                        .filter(recipeIngredients -> recipeIngredients.getUnitOfMeasure().getId().equals(ingredientDto.getUnitOfMeasure().getId()))
+                        .filter(recipeIngredients -> recipeIngredients.getUnitOfMeasure().getId().equals(ingredientDto.getUnitOfMeasureDto().getId()))
                         .findFirst();
             }
 

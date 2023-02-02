@@ -30,7 +30,7 @@ public class IngredientDtoToIngredient implements Converter<IngredientDto, Ingre
                 .id(ingredientDto.getId())
                 .amount(ingredientDto.getAmount())
                 .description(ingredientDto.getDescription())
-                .unitOfMeasure(unitOfMeasureConverter.convert(ingredientDto.getUnitOfMeasure()))
+                .unitOfMeasure(unitOfMeasureConverter.convert(ingredientDto.getUnitOfMeasureDto()))
                 .build();
 
         if (Objects.nonNull(ingredientDto.getRecipeId())) {

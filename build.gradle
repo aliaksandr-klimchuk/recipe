@@ -1,8 +1,8 @@
 plugins {
-    id 'org.springframework.boot' version '3.0.0-M4'
+    id 'org.springframework.boot' version '2.7.0'
     id 'io.spring.dependency-management' version '1.0.12.RELEASE'
-    id 'java'
     id 'jacoco'
+    id 'java'
 }
 
 group = 'alex.klimchuk'
@@ -26,7 +26,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation group: 'jakarta.validation', name: 'jakarta.validation-api', version: '3.0.2'
     implementation group: 'org.hibernate', name: 'hibernate-validator', version: '8.0.0.Final'
-    implementation group: 'org.webjars', name: 'bootstrap', version: '5.2.0'
     implementation group: 'org.webjars', name: 'jquery', version: '3.6.1'
     runtimeOnly 'com.h2database:h2'
     compileOnly 'org.projectlombok:lombok'
@@ -40,9 +39,16 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
+jacoco {
+    toolVersion = "0.8.8"
+    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
+}
+
 jacocoTestReport {
     reports {
         xml.enabled true
         html.enabled false
     }
 }
+
+check.dependsOn jacocoTestReport

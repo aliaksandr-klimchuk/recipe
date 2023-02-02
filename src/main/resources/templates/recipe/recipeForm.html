@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
     <title>Recipe Form</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
-          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}">
+    <link crossorigin="anonymous"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          rel="stylesheet">
 
-    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/webjars/jquery/3.6.1/jquery.min.js"></script>
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+            crossorigin="anonymous">
+    </script>
 </head>
 <body>
 <div class="container-fluid" style="margin-top: 20px">
@@ -154,13 +156,13 @@
                                 <div class="col-md-12">
                                     <ul th:if="${not #lists.isEmpty(recipe.ingredients)}">
                                         <li th:remove="all">1 Cup of milk</li>
-                                        <li th:remove="all">1 Teaspoon of chocolate</li>
+                                        <li th:remove="all">1 TeaSpoon of chocolate</li>
                                         <li th:remove="all">asdf</li>
                                         <li th:each="ingredient : ${recipe.ingredients}"
                                             th:text="${(ingredient.getAmount() +
                                         ' ' + ingredient.uom.getDescription() +
                                         ' - ' + ingredient.getDescription())}">
-                                            1 Teaspoon of Sugar
+                                            1 TeaSpoon of Sugar
                                         </li>
                                     </ul>
                                 </div>
@@ -174,7 +176,8 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-12 form-group">
-                                    <textarea class="form-control" rows="3" th:field="*{directions}"></textarea></div>
+                                    <textarea class="form-control" rows="3" th:field="*{directions}"></textarea>
+                                </div>
                             </div>
                         </div>
                     </div>
