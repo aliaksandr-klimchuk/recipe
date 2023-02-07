@@ -67,7 +67,7 @@
                                 <h5>Difficulty:</h5>
                             </div>
                             <div class="col-md-3">
-                                <p th:text="${recipe.difficulty}">Easy</p>
+                                <p th:text="${recipe.difficulty.name()}">Easy</p>
                             </div>
                         </div>
                         <div class="row">
@@ -120,7 +120,7 @@
                                     <li th:remove="all">1 TeaSpoon of chocolate</li>
                                     <li th:each="ingredient : ${recipe.ingredients}"
                                         th:text="${(ingredient.getAmount() +
-                                        ' ' + ingredient.uom.getDescription() +
+                                        ' ' + ingredient.unitOfMeasure.getDescription() +
                                         ' - ' + ingredient.getDescription())}">
                                         1 TeaSpoon of Sugar
                                     </li>

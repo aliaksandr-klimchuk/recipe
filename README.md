@@ -1,5 +1,5 @@
 ### Recipe
-This repository contains a Spring Boot example project using Spring WebMVC.
+This repository contains an example of a multi-module Spring WebMVC project with Back-End and Front-End parts.
 
 
 

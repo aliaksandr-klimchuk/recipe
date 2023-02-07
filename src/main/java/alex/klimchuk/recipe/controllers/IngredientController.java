@@ -45,7 +45,7 @@ public class IngredientController {
         return "recipe/ingredients/show";
     }
 
-    @PostMapping("/new")
+    @GetMapping("/new")
     public String newRecipe(@PathVariable String recipeId, Model model) {
         RecipeDto recipeDto = recipeService.findDtoById(Long.valueOf(recipeId));
 
@@ -59,7 +59,7 @@ public class IngredientController {
         return "recipe/ingredients/ingredientsForm";
     }
 
-    @PutMapping("/{id}/update")
+    @GetMapping("/{id}/update")
     public String updateRecipeIngredient(@PathVariable String recipeId,
                                          @PathVariable String id, Model model) {
         model.addAttribute("ingredient", ingredientService.findByRecipeIdAndIngredientId(Long.valueOf(recipeId), Long.valueOf(id)));
@@ -77,7 +77,7 @@ public class IngredientController {
         return "redirect:/recipe/" + savedDto.getRecipeId() + "/ingredients/" + savedDto.getId() + "/show";
     }
 
-    @DeleteMapping("/{id}/delete")
+    @GetMapping("/{id}/delete")
     public String deleteIngredient(@PathVariable String recipeId,
                                    @PathVariable String id) {
         log.debug("Deleting ingredient id: " + id);
