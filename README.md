@@ -1,7 +1,7 @@
 ### Recipe
 This repository contains an example of a multi-module Spring WebMVC project with Back-End and Front-End parts. 
 
- 
+  
 
 ### How to start:
 1. Install and run any IDE for working with Java.
